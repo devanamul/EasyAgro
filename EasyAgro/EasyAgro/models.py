@@ -26,3 +26,9 @@ class postPlantingProcess(models.Model):
 	depth = models.FloatField()
 	spacing = models.CharField(max_length=200)
 	drainage = models.CharField(max_length=200)
+
+class treatment(models.Model):
+	crop = models.ForeignKey(crops, on_delete=models.CASCADE)
+	diseaseName = models.CharField(max_length=150)
+	advice = models.CharField(max_length=300)
+	pesticides = models.CharField(max_length=200)
