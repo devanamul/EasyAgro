@@ -19,3 +19,10 @@ class fertilizer(models.Model):
 	nitrogen = models.FloatField()
 	phosphorous = models.FloatField()
 	potassium =  models.FloatField()
+
+class postPlantingProcess(models.Model):
+	crop = models.ForeignKey(crops, on_delete=models.CASCADE)
+	fieldPreparation = models.CharField(max_length=300)
+	depth = models.FloatField()
+	spacing = models.CharField(max_length=200)
+	drainage = models.CharField(max_length=200)
