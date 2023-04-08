@@ -13,3 +13,9 @@ class project(models.Model):
 	currentP = models.FloatField()
 	currentK =  models.FloatField()
 	status = models.CharField(max_length=25)
+
+class fertilizer(models.Model):
+	crop = models.ForeignKey(crops, on_delete=models.CASCADE)
+	nitrogen = models.FloatField()
+	phosphorous = models.FloatField()
+	potassium =  models.FloatField()
