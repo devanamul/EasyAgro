@@ -20,11 +20,20 @@ class fertilizer(models.Model):
 	phosphorous = models.FloatField()
 	potassium =  models.FloatField()
 
+class prePlantingProcess(models.Model):
+	crop = models.ForeignKey(crops, on_delete=models.CASCADE)
+	depth = models.FloatField()
+	spacing = models.CharField(max_length=200)
+	irrigation = models.CharField(max_length=400)
+	drainage = models.CharField(max_length=200)
+	time = models.IntegerField()
+
 class postPlantingProcess(models.Model):
 	crop = models.ForeignKey(crops, on_delete=models.CASCADE)
 	fieldPreparation = models.CharField(max_length=300)
 	depth = models.FloatField()
 	spacing = models.CharField(max_length=200)
+	irrigation = models.CharField(max_length=400, null = True)
 	drainage = models.CharField(max_length=200)
 
 class treatment(models.Model):
