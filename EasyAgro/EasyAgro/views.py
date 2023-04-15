@@ -5,3 +5,6 @@ def home(request):
 
 def signin(request):
 	return render(request, "EasyAgro/login.html")
+
+def dashboard(request):
+	return render(request, "EasyAgro/dashboard.html")
