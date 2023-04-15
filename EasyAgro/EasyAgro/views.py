@@ -8,3 +8,6 @@ def signin(request):
 
 def dashboard(request):
 	return render(request, "EasyAgro/dashboard.html")
+
+def projectForm(request):
+	return render(request, "EasyAgro/projectForm.html")
