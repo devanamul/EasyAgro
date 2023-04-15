@@ -118,7 +118,7 @@ body {
 }
 
 .header.item {
-	font-family: 'Fantasy';
+	font-family: cursive;
 	align-items: center; 
 	justify-content: center; 
 	display: flex; 
@@ -207,4 +207,8 @@ body {
 	justify-content: space-around;
 	align-items: center;
 	margin: 20px;
+}
+
+.card:hover{
+	background: rgba(0, 106, 78, 0.842);
 }

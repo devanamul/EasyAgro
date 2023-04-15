@@ -11,3 +11,6 @@ def dashboard(request):
 
 def projectForm(request):
 	return render(request, "EasyAgro/projectForm.html")
+
+def diseaseIdentification(request):
+	return render(request, "EasyAgro/disease.html")

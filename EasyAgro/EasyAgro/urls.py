@@ -22,5 +22,6 @@ urlpatterns = [
     path('', views.home, name='homepage'),
     path('signin', views.signin, name = 'SignIn'),
     path('dashboard', views.dashboard, name = 'Dashboard'),
-    path('projectform', views.projectForm, name = 'ProjectForm')
+    path('projectform', views.projectForm, name = 'ProjectForm'),
+    path('diseaseidentification', views.diseaseIdentification, name = 'Disease')
 ]
