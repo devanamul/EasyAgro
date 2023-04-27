@@ -14,8 +14,8 @@
             <!-- Log in part -->
             <div class="card-front">
                 <h2 style="font-family: cursive; color:white; text-align: center;">Easy Agro</h2>
-                <form action="" method="POST"> 
-                    <form action="" method="POST">
+                    <form name="signin-form" action="{% url 'SignIn' %}" method="POST">
+                        {% csrf_token %}
                     	<input name="username" type="text" class="input-box" placeholder="ইউজার নেম" required name="" id="">
                         <input name="pass" type="password" class="input-box" placeholder="পাসওয়ার্ড" required name="" id="">
                         <button name='login' type="submit" class="submit-btn">লগইন করুন</button>
@@ -24,16 +24,21 @@
                     <a href="">পাসওয়ার্ড ভুলে গেছেন?</a>
             </div>
             <div class="card-back">
-                <form action="" method="POST">
-                    <h2>REGISTER</h2>
+                <form action="{% url 'SignIn' %}" method="POST">
+                    {% csrf_token %}
+                    <h2>Sign Up</h2>
                     <input name="username" type="text" class="input-box" placeholder="ইউজার নেম" required name="" id="">
+
+                    <input name="email" type="email" class="input-box" placeholder="ইমেইল" required name="" id="">
                     
                     <input name="first_name" type="text" class="input-box" placeholder="প্রথম নাম লিখুন" required name="" id="">
 
                     <input name="last_name" type="text" class="input-box" placeholder="দ্বিতীয় নাম লিখুন" id="">
 
-                    <input name="pass" type="password" class="input-box" placeholder="পাসওয়ার্ড" required name="" id="">
-                    <button name="create" type="submit" class="submit-btn">একাউন্ট তৈরি করুন</button>
+                    <input name="password2" type="password" class="input-box" placeholder="পাসওয়ার্ড" required name="" id="">
+
+                    <input name="password" type="password" class="input-box" placeholder="পাসওয়ার্ড টি আবার লিখুন" required name="" id="">
+                    <button name="SignUp" type="submit" class="submit-btn">একাউন্ট তৈরি করুন</button>
                     <button type="button" class="btn" onclick="openLogin()">আমার একাউন্ট আছে</button>
                 </form>
             </div>

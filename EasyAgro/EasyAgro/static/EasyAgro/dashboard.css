@@ -63,6 +63,7 @@ body {
 
 .slide:nth-child(1) {
   background-image: url("../EasyAgro/image1.jpg");
+  animation-delay: 5s;
 }
 
 .slide:nth-child(2) {
