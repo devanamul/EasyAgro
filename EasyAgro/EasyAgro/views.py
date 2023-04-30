@@ -2,6 +2,11 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
+import numpy as np
+import cv2
+import tensorflow as tf
+import tensorflow_hub as hub
+import os
 
 def home(request):
 	return render(request, "EasyAgro/home.html")
@@ -49,7 +54,35 @@ def dashboard(request):
 	return render(request, "EasyAgro/dashboard.html")
 
 def projectForm(request):
-	return render(request, "EasyAgro/projectForm.html")
+	if request.method == 'GET':
+		return render(request, "EasyAgro/projectForm.html")
 
 def diseaseIdentification(request):
-	return render(request, "EasyAgro/disease.html")
+	if request.method == 'GET':
+		return render(request, "EasyAgro/disease.html")
+
+	elif request.method == 'POST':
+		os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+		model = tf.keras.models.load_model('models/my_model.h5', custom_objects={'KerasLayer':hub.KerasLayer})
+
+		filename = request.FILES['image']
+
+		image = cv2.imread(filename)
+		image = cv2.resize(image, (224, 224))
+		image = np.array(image) / 255.0
+		image = np.expand_dims(image, axis=0)
+
+		prediction = model.predict(image)
+
+		predicted_label = np.argmax(prediction)
+
+		labels = {}
+		labels[0] = "Early Blight"
+		labels[1] = "Healthy"
+		labels[2] = "Late Blight"
+
+		result = labels[predicted_label]
+
+		return render(request, "EasyAgro/disease.html", {'result': result})
+
+

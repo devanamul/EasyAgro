@@ -24,16 +24,17 @@
 
 	<div class="part3" style="width: 100%;">
 		<div class="upload">
-			<form action="/action_page.php">
+			<form action="{% url 'Disease' %}" method="POST">
+			  {% csrf_token %}
 			  <label for="img">Select image:</label>
-			  <input type="file" id="img" name="img" accept="image/*">
-			  <button name='submit' !-- type="submit" class="submit-btn" -->রোগ নির্ণয় করুন</button>
+			  <input type="file" id="img" name="image" accept="image/*">
+			  <button name='submit' type="submit" class="submit-btn">রোগ নির্ণয় করুন</button>
 			</form>
 		</div>
 
 		<div class="treatment">
 			<div class="result">
-				<h3>Result</h3>
+				<h3>Result: {{ result }}</h3>
 			</div>
 			  <h3>Advice</h3>
 			<div class="advice">
