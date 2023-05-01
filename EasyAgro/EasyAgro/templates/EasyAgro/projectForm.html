@@ -24,26 +24,27 @@
 
 	<div class="part3" style="width: 100%;">
 		<div class="form">
-                <form action="" method="POST">
-                    <input name="username" type="text" class="input-box" placeholder="প্রজেক্টের নাম" required name="" id="">
+                <form action="{% url 'ProjectForm' %}" method="POST">
+                	{% csrf_token %}
+                    <input name="projectName" type="text" class="input-box" placeholder="প্রজেক্টের নাম" required name="" id="">
                     
-                    <input name="first_name" type="text" class="input-box" placeholder="জমির পরিমান (শতক)" required name="" id="">
+                    <input name="landSize" type="text" class="input-box" placeholder="জমির পরিমান (শতক)" required name="" id="">
 
-                    <select class="ui dropdown">
+                    <select class="ui dropdown" name="CropType">
                       <option value="">ফসলের ধরন</option>
-					  <option value="Rice">ধান</option>
-					  <option value="Wheat">গম</option>
-					  <option value="Maize">ভুট্টা</option>
-					  <option value="Onion">পেঁয়াজ</option>
-					  <option value="WinterOnion">শীতকালীন পেঁয়াজ</option>
-					  <option value="Garlic">রসুন</option>
-					  <option value="Cardamom">এলাচ</option>
-					  <option value="Musturd">সরিষা</option>
-					  <option value="Cabage">বাধাকপি</option>
-					  <option value="Couliflower">ফুল্কপি</option>
-					  <option value="Potato">আলু</option>
-					  <option value="Tomato">টমেটো</option>
-					</select>
+										  <option value="Rice">ধান</option>
+										  <option value="Wheat">গম</option>
+										  <option value="Maize">ভুট্টা</option>
+										  <option value="Onion">পেঁয়াজ</option>
+										  <option value="WinterOnion">শীতকালীন পেঁয়াজ</option>
+										  <option value="Garlic">রসুন</option>
+										  <option value="Cardamom">এলাচ</option>
+										  <option value="Musturd">সরিষা</option>
+										  <option value="Cabage">বাধাকপি</option>
+										  <option value="Couliflower">ফুল্কপি</option>
+										  <option value="Potato">আলু</option>
+										  <option value="Tomato">টমেটো</option>
+										</select>
                     <button name="create" type="submit" class="submit-btn">প্রজেক্ট তৈরি করুন</button> 
                 </form>
             </div>

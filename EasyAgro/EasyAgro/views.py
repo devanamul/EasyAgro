@@ -2,11 +2,16 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
+from .models import project, crops
+from django.core.files.storage import default_storage
+from django.conf import settings 
 import numpy as np
 import cv2
 import tensorflow as tf
 import tensorflow_hub as hub
 import os
+from io import BytesIO
+# from models import classify
 
 def home(request):
 	return render(request, "EasyAgro/home.html")
@@ -51,11 +56,29 @@ def signin(request):
 
 
 def dashboard(request):
-	return render(request, "EasyAgro/dashboard.html")
+	u = request.user
+	projects = project.objects.filter(author=u)
+	return render(request, "EasyAgro/dashboard.html", {'projects': projects})
 
 def projectForm(request):
 	if request.method == 'GET':
 		return render(request, "EasyAgro/projectForm.html")
+	elif request.method == 'POST':
+		projectName = request.POST['projectName']
+		landSize = request.POST['landSize']
+		cropType = request.POST['CropType']
+		u = request.user
+
+		print(cropType)
+
+		crop = crops.objects.get(name = cropType)
+
+		newProject = project(author = u, crop = crop, name = projectName, area = landSize, status = 'Running')
+		newProject.save()
+		return redirect('ProjectForm')
+
+def Project(request):
+	return render(request, "EasyAgro/project.html")
 
 def diseaseIdentification(request):
 	if request.method == 'GET':
@@ -63,11 +86,14 @@ def diseaseIdentification(request):
 
 	elif request.method == 'POST':
 		os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
-		model = tf.keras.models.load_model('models/my_model.h5', custom_objects={'KerasLayer':hub.KerasLayer})
+		model_path = os.path.join(os.path.dirname(__file__), 'models', 'my_model.h5')
+		model = tf.keras.models.load_model(model_path, custom_objects={'KerasLayer':hub.KerasLayer})
 
-		filename = request.FILES['image']
+		uploaded_image = request.FILES['img']
+		image_bytes = uploaded_image.read()
 
-		image = cv2.imread(filename)
+		image = cv2.imdecode(np.frombuffer(image_bytes, np.uint8), cv2.IMREAD_COLOR)
+		print(image.shape)
 		image = cv2.resize(image, (224, 224))
 		image = np.array(image) / 255.0
 		image = np.expand_dims(image, axis=0)

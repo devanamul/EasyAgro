@@ -8,21 +8,42 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 model = tf.keras.models.load_model('my_model.h5', custom_objects={'KerasLayer':hub.KerasLayer})
 
-print("FILE NAME: ")
-filename = input()
+def ident(image):
+	# print("FILE NAME: ")
+	filename = image
 
-image = cv2.imread(filename)
-image = cv2.resize(image, (224, 224))
-image = np.array(image) / 255.0
-image = np.expand_dims(image, axis=0)
+	image = cv2.imread(filename)
+	image = cv2.resize(image, (224, 224))
+	image = np.array(image) / 255.0
+	image = np.expand_dims(image, axis=0)
 
-prediction = model.predict(image)
+	prediction = model.predict(image)
 
-predicted_label = np.argmax(prediction)
+	predicted_label = np.argmax(prediction)
 
-labels = {}
-labels[0] = "Early Blight"
-labels[1] = "Healthy"
-labels[2] = "Late Blight"
+	labels = {}
+	labels[0] = "Early Blight"
+	labels[1] = "Healthy"
+	labels[2] = "Late Blight"
 
-print(f"{labels[predicted_label]}")
+	# print(f"{labels[predicted_label]}")
+	return f"{labels[predicted_label]}"
+
+# print("FILE NAME: ")
+# filename = input()
+
+# image = cv2.imread(filename)
+# image = cv2.resize(image, (224, 224))
+# image = np.array(image) / 255.0
+# image = np.expand_dims(image, axis=0)
+
+# prediction = model.predict(image)
+
+# predicted_label = np.argmax(prediction)
+
+# labels = {}
+# labels[0] = "Early Blight"
+# labels[1] = "Healthy"
+# labels[2] = "Late Blight"
+
+# print(f"{labels[predicted_label]}")
