@@ -58,7 +58,7 @@ def signin(request):
 def dashboard(request):
 	u = request.user
 	projects = project.objects.filter(author=u)
-	return render(request, "EasyAgro/dashboard.html", {'projects': projects})
+	return render(request, "EasyAgro/dashboard.html", {'projects': projects, 'user': u})
 
 def projectForm(request):
 	if request.method == 'GET':
@@ -111,4 +111,11 @@ def diseaseIdentification(request):
 
 		return render(request, "EasyAgro/disease.html", {'result': result})
 
+def fertilizer(request):
+	return render(request, "EasyAgro/fertilizer.html")
 
+def prePlanting(request):
+	return render(request, "EasyAgro/prePlanting.html")
+
+def postPlanting(request):
+	return render(request, "EasyAgro/postPlanting.html")

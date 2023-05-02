@@ -25,4 +25,8 @@ urlpatterns = [
     path('projectform/', views.projectForm, name = 'ProjectForm'),
     path('diseaseidentification/', views.diseaseIdentification, name = 'Disease'),
     path('project/', views.Project, name = 'Project'),
+    path('fertilizer/', views.fertilizer, name = 'Fertilizer'),
+    path('prePlanting/', views.prePlanting, name = 'PrePlanting'),
+    path('postPlanting/', views.postPlanting, name = 'PostPlanting'),
+
 ]
