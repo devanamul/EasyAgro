@@ -41,15 +41,16 @@
 		<div class="projects">আমার চলতি প্রজেক্টঃ</div>
 		<div style="padding-left: 5px; align-items: center;" class="ui link cards">
 		{% for obj in projects %}
-		  <div style="width: 201px; 
-			height: 295px;
-			background: rgba(0, 106, 78, 0.5);
-			border-radius: 26px;" onMouseOver="this.style.backgroundColor='#00A300'"
-				onMouseOut="this.style.backgroundColor='rgba(0, 106, 78, 0.5)'" class="card">
-		    <h3>{{obj.name}}</h3>
+		  <a href="" style="width: 201px; 
+		  height: 295px;
+		  color: black;
+		  background: rgba(0, 106, 78, 0.5);
+		  border-radius: 26px;" onMouseOver="this.style.backgroundColor='#00A300'"
+			  onMouseOut="this.style.backgroundColor='rgba(0, 106, 78, 0.5)'" class="card">
+			<h3>{{obj.name}}</h3>
 		    <h3>{{obj.area}}</h3>
 		    <h3>Status: {{obj.status}}</h3>
-		  </div>
+		  </a>
 		  {% endfor %}
 		</div>
 	</div>

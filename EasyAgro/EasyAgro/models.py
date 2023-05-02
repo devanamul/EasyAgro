@@ -36,6 +36,7 @@ class postPlantingProcess(models.Model):
 	spacing = models.CharField(max_length=200)
 	irrigation = models.CharField(max_length=400, null = True)
 	drainage = models.CharField(max_length=200)
+	time = models.IntegerField()
 
 class treatment(models.Model):
 	crop = models.ForeignKey(crops, on_delete=models.CASCADE)
